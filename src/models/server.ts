@@ -3,6 +3,7 @@ import { createServer } from "http";
 import cors from "cors";
 import compression from "compression";
 import { router as usersRoutes } from "../routes/users.routes";
+import { run } from "../db/connectionDb";
 
 export class ServerExpress {
   app: express.Express;
@@ -16,6 +17,7 @@ export class ServerExpress {
     this.middleware();
     this.httpServer = createServer(this.app);
     this.routes();
+    run();
   }
 
   middleware() {
