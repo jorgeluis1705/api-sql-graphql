@@ -2,6 +2,7 @@ import { IUser, UserModel } from "./../schema/user.schema";
 import bycript from "bcrypt";
 import { response, request } from "express";
 import { validationResult } from "express-validator";
+import { validateFields } from "../middlewares/fieldsUser";
 export const usersGet = async (req = request, res = response) => {
   try {
     let users: IUser[] = await UserModel.find();
@@ -26,12 +27,6 @@ export const userGet = async (req = request, res = response) => {
 };
 export const methosPost = async (req = request, res = response) => {
   // email validation for correct format
-  const errors = validationResult(req);
-  if (errors) {
-    return res.status(404).json({
-      errors,
-    });
-  }
   try {
     const body: IUser = req.body;
     const userAux: IUser = { ...body };
