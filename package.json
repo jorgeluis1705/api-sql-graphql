@@ -1,0 +1,21 @@
+{
+  "name": "mongo-db-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/server.js",
+    "build": "tsc -p . && ncp src/",
+    "start:dev": "npm run build:dev",
+    "build:dev": "nodemon \"src/server.ts\" --exec \"ts-node\" src/server.ts -e ts,json,graphql"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
