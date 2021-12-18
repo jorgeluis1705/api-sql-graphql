@@ -3,16 +3,24 @@ import { response, request } from "express";
 export const usersGet = async (req = request, res = response) => {
   try {
     let users: IUser[] = await UserModel.find();
-    await res
-      .status(200 as any)
-      .json(users || [{ name: "juan" }, { name: "luis" }]);
-  } catch (error) {}
+    await res.status(500 as any).json(users || []);
+  } catch (error) {
+    res.status(500).json({
+      error,
+    });
+  }
 };
-export const userGet = (req = request, res = response) => {
+export const userGet = async (req = request, res = response) => {
   const params = req.params;
-  res.status(500).json({
-    params,
-  });
+
+  try {
+    const user = await UserModel.findById(params.id);
+    await res.status(200 as any).json(user);
+  } catch (error) {
+    res.status(500).json({
+      error,
+    });
+  }
 };
 export const methosPost = async (req = request, res = response) => {
   try {
