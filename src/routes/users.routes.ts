@@ -4,10 +4,11 @@ import {
   methosPost,
   userGet,
   userUpdateOne,
+  deleteUser,
 } from "./../controlers/users.controler";
 import { Router } from "express";
 import { check } from "express-validator";
-import { emailCheck, roleCheck } from "../helpers/dbValidators";
+import { emailCheck, existUserByID, roleCheck } from "../helpers/dbValidators";
 
 export const router = Router();
 
@@ -25,4 +26,21 @@ router.post(
   ],
   methosPost
 );
-router.put("/:id", userUpdateOne);
+router.put(
+  "/:id",
+  [
+    check("id", "Id is empty").notEmpty(),
+    check("id", "Id invalid").isMongoId(),
+    check("id", "User not exist").custom(existUserByID),
+  ],
+  userUpdateOne
+);
+router.delete(
+  "/:id",
+  [
+    check("id", "Id is empty").notEmpty(),
+    check("id", "Id invalid").isMongoId(),
+    check("id", "User not exist").custom(existUserByID),
+  ],
+  deleteUser
+);

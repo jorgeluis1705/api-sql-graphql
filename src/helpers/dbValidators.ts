@@ -13,3 +13,9 @@ export const emailCheck = async (email: string) => {
     throw new Error(`${email} already exist`);
   }
 };
+export const existUserByID = async (id: string) => {
+  const existUser = await UserModel.findById(id);
+  if (!existUser) {
+    throw new Error(`${id} Not exist`);
+  }
+};

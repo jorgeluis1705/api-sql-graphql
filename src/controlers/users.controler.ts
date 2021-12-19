@@ -3,7 +3,10 @@ import bycript from "bcrypt";
 import { response, request, Request, Response } from "express";
 export const usersGet = async (req = request, res = response) => {
   try {
-    let users: IUser[] = await UserModel.find();
+    const { from = 0, to = 10 } = req.params;
+    let users: IUser[] = await UserModel.find()
+      .skip(Number(from))
+      .limit(Number(to));
     await res.status(500 as any).json(users || []);
   } catch (error) {
     res.status(500).json({
@@ -58,6 +61,18 @@ export const userUpdateOne = async (req: Request, res: Response) => {
     await res.status(200).json(rest);
   } catch (error) {
     console.log(error);
+    res.status(404).json({
+      error,
+    });
+  }
+};
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    // await UserModel.findByIdAndDelete()
+    const { id } = req.params;
+    const user = await UserModel.findByIdAndUpdate(id, { state: false });
+    await res.status(200).json(user);
+  } catch (error) {
     res.status(404).json({
       error,
     });
