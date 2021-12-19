@@ -29,14 +29,6 @@ export const methosPost = async (req = request, res = response) => {
     const body: IUser = req.body;
     const userAux: IUser = { ...body };
 
-    // verificar correo
-    const exist = await UserModel.findOne({ email: userAux.email });
-    console.log(exist);
-    if (exist) {
-      return res.status(404).json({
-        error: "email already exist",
-      });
-    }
     //encriptar contraseña
     const salt = bycript.genSaltSync();
     userAux.password = bycript.hashSync(userAux.password, salt);
