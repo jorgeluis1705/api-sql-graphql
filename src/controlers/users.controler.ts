@@ -1,6 +1,6 @@
 import { IUser, UserModel } from "./../schema/user.schema";
 import bycript from "bcrypt";
-import { response, request } from "express";
+import { response, request, Request, Response } from "express";
 export const usersGet = async (req = request, res = response) => {
   try {
     let users: IUser[] = await UserModel.find();
@@ -39,6 +39,25 @@ export const methosPost = async (req = request, res = response) => {
     await doc.save();
     await res.status(500).json(doc);
   } catch (error) {
+    res.status(404).json({
+      error,
+    });
+  }
+};
+
+export const userUpdateOne = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    let { password, google, ...rest }: IUser = req.body;
+    if (password) {
+      const salt = bycript.genSaltSync();
+      (rest as any).password = bycript.hashSync(password, salt);
+    }
+    await UserModel.findByIdAndUpdate(id, rest);
+    await res.status(200).json(rest);
+  } catch (error) {
+    console.log(error);
     res.status(404).json({
       error,
     });

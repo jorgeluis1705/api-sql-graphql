@@ -1,5 +1,10 @@
 import { validateFields } from "./../middlewares/fieldsUser";
-import { usersGet, methosPost, userGet } from "./../controlers/users.controler";
+import {
+  usersGet,
+  methosPost,
+  userGet,
+  userUpdateOne,
+} from "./../controlers/users.controler";
 import { Router } from "express";
 import { check } from "express-validator";
 import { emailCheck, roleCheck } from "../helpers/dbValidators";
@@ -20,3 +25,4 @@ router.post(
   ],
   methosPost
 );
+router.put("/:id", userUpdateOne);
