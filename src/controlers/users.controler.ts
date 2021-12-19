@@ -1,8 +1,6 @@
 import { IUser, UserModel } from "./../schema/user.schema";
 import bycript from "bcrypt";
 import { response, request } from "express";
-import { validationResult } from "express-validator";
-import { validateFields } from "../middlewares/fieldsUser";
 export const usersGet = async (req = request, res = response) => {
   try {
     let users: IUser[] = await UserModel.find();

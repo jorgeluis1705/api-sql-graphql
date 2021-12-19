@@ -23,5 +23,10 @@ const schema = new Schema<IUser>({
   google: { type: Boolean, default: false },
 });
 
+schema.methods.toJSON = function () {
+  // delete some properties
+  const { __v, password, ...user } = this.toObject();
+  return user;
+};
 // 3. Create a Model.
 export const UserModel = model<IUser>("User", schema);
