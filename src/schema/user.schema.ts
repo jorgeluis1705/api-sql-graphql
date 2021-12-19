@@ -7,6 +7,7 @@ export interface IUser {
   role: string;
   state: boolean;
   google: boolean;
+  _id: string;
 }
 const schema = new Schema<IUser>({
   name: { type: String, required: [true, "is Requeired name"] },
