@@ -1,7 +1,10 @@
+import { resolversMap } from "./../resolvers/resolvers.map";
+import "graphql-import-node";
+import typeDefs from "../schema/schema.graphql";
 import { ApolloServer } from "apollo-server-express";
-import { schema } from "../schema";
 
 export const serverApollo = new ApolloServer({
-  schema: schema,
+  typeDefs,
+  resolvers: resolversMap,
   introspection: true,
 });
