@@ -1,4 +1,5 @@
 type Query{
+    getUsers:[User]
     helloWorld: [String],
     helloWorldID(id:ID): String,
 }
