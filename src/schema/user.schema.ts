@@ -1,11 +1,14 @@
 import { gql } from "apollo-server-express";
 
-export const typeDefs = gql`
-  type Query {
-    helloWorld: [String]
-    helloWorldID(id: ID): String
-  }
-  type Mutation {
-    message(message: String!): String
+export const UserSchema = gql`
+  type User {
+    name: String
+    email: String
+    avatar: String
+    password: String
+    role: String
+    state: Boolean
+    google: Boolean
+    _id: String
   }
 `;
