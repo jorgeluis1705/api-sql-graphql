@@ -1,4 +1,8 @@
 import { IUser, UserModel } from "./../models/user.model";
+const usersInMongo = async (): Promise<IUser[]> => {
+  const users: IUser[] = await UserModel.find();
+  return users;
+};
 export const query = {
   Query: {
     helloWorld(): any[] {
@@ -8,8 +12,10 @@ export const query = {
       return args["id"];
     },
     async getUsers(): Promise<IUser[]> {
-      const users: IUser[] = await UserModel.find();
-      return users;
+      return await usersInMongo();
+    },
+    getUser: async (root: any, args: any) => {
+      return (await UserModel.findById(args["id"])) as IUser;
     },
   },
 };
