@@ -1,4 +1,4 @@
-import { IUser, UserModel } from "./../schema/user.schema";
+import { IUser, UserModel } from "../models/user.model";
 import bycript from "bcrypt";
 import { response, request, Request, Response } from "express";
 export const usersGet = async (req = request, res = response) => {

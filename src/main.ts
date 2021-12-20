@@ -1,4 +1,4 @@
-import { ServerExpress } from "./models/server";
+import { ServerExpress } from "./server/server";
 
 const server = new ServerExpress();
 

@@ -1,5 +1,5 @@
-import { RoleModel } from "../schema/role.schema";
-import { UserModel } from "../schema/user.schema";
+import { RoleModel } from "../models/role.model";
+import { UserModel } from "../models/user.model";
 
 export const roleCheck = async (role: string) => {
   const existRole = await RoleModel.findOne({ role });

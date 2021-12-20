@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/server.js",
+    "start": "node build/main.js",
     "build": "tsc -p . && ncp src/",
     "start:dev": "npm run build:dev",
-    "build:dev": "nodemon \"src/server.ts\" --exec \"ts-node\" src/server.ts -e ts,json,graphql"
+    "build:dev": "nodemon \"src/main.ts\" --exec \"ts-node\" src/main.ts -e ts,json,graphql"
   },
   "keywords": [],
   "author": "",
