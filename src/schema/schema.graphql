@@ -2,8 +2,6 @@ type Query{
     getUsers:[User]
     getUser(id:String): User,
 
-    helloWorld: [String],
-    helloWorldID(id:ID): String,
 }
 type Mutation{
     message( message: String!): String,
