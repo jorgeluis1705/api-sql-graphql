@@ -1,6 +1,5 @@
 import { IUser } from "../models/user.model";
 import bycript from "bcrypt";
-
 export const mutation = {
   Mutation: {
     createUser: async (__: void, args: any) => {

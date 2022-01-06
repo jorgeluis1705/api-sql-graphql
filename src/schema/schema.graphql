@@ -4,7 +4,7 @@ type Query{
 
 }
 type Mutation{
-    createUser(name: String, email: String,avatar: String,role: String,password:String):User
-    updateUser(id: String, name: String, email: String,avatar: String,role: String,password:String):User
+    createUser(nombre: String, apellidoPaterno: String,apellidoMaterno: String,telefono: String,direccion:DireccionInput):User
+    updateUser(id: String, nombre: String, apellidoPaterno: String,apellidoMaterno: String,telefono: String,direccion:DireccionInput):User
     deleteUser(id: String):String
 }

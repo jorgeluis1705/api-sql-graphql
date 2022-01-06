@@ -7,6 +7,6 @@ export const UserSchema = gql`
     apellidoPaterno: String
     apellidoMaterno: String
     telefono: String
-    direccion: String
+    direccion: Direccion
   }
 `;

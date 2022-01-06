@@ -1,8 +1,7 @@
 export const type = {
-  // User: {
-  //   courses: (parent: any) => {
-  //     console.log(parent);
-  //     return parent;
-  //   },
-  // },
+  User: {
+    direccion: (parent: any) => {
+      return parent.direccion;
+    },
+  },
 };

@@ -10,7 +10,6 @@ export const query = {
     },
     getUser: async (root: any, args: any) => {
       const user = await UserModel.findByPk(args["id"]);
-      console.log(user);
       return user;
     },
   },
