@@ -1,3 +1,4 @@
+import { sequelizeDB } from "./../db/connectionDb";
 import express from "express";
 import { createServer } from "http";
 import cors from "cors";
@@ -14,6 +15,7 @@ export class ServerExpress {
     this.app = express();
     this.port = 3000;
     /* middleares */
+    this.dbSql();
     this.middleware();
     this.routes();
     this.httpServer = createServer(this.app);
@@ -37,6 +39,15 @@ export class ServerExpress {
       app: this.app,
       cors: { credentials: false, origin: ["*"] },
     });
+  }
+  async dbSql() {
+    try {
+      await sequelizeDB.authenticate();
+      console.log("db is online");
+    } catch (error) {
+      console.log("Error in db connection");
+      console.log({ error });
+    }
   }
   listener(): void {
     this.httpServer.listen(this.port, () =>
