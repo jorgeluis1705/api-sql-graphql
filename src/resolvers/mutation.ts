@@ -1,5 +1,8 @@
+import { UserModel } from "./../models/user.model";
 import { IUser } from "../models/user.model";
 import bycript from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
+
 export const mutation = {
   Mutation: {
     createUser: async (__: void, args: any) => {
@@ -7,17 +10,12 @@ export const mutation = {
         const body: IUser = args;
         const userAux: IUser = { ...body };
 
-        //encriptar contraseña
-        const salt = bycript.genSaltSync();
-        // userAux.password = bycript.hashSync(userAux.password, salt);
-
-        // await doc.save();
-        // return await doc;
-        return {
-          name: "S",
-        };
+        return await UserModel.create({
+          ...body,
+          id: uuidv4(),
+        });
       } catch (error) {
-        null;
+        return null;
       }
     },
     updateUser: async (__: void, args: any) => {
@@ -41,6 +39,8 @@ export const mutation = {
       try {
         // await UserModel.findByIdAndDelete()
         const { id } = args;
+        const userDelete = await UserModel.findByPk(id);
+        userDelete?.destroy();
         return id;
       } catch (error) {
         return "Error";
