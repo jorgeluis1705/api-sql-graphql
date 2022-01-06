@@ -1,7 +1,6 @@
 import { UserModel } from "./../models/user.model";
 import { IUser } from "../models/user.model";
 import { v4 as uuidv4 } from "uuid";
-import { body } from "express-validator";
 
 export const mutation = {
   Mutation: {
