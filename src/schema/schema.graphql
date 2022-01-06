@@ -4,7 +4,6 @@ type Query{
 
 }
 type Mutation{
-    message( message: String!): String,
     createUser(name: String, email: String,avatar: String,role: String,password:String):User
     updateUser(id: String, name: String, email: String,avatar: String,role: String,password:String):User
     deleteUser(id: String):String

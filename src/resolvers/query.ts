@@ -1,6 +1,6 @@
-import { IUser } from "./../models/user.model";
+import { IUser, UserModel } from "./../models/user.model";
 const usersInMongo = async (): Promise<IUser[]> => {
-  const users: IUser[] = []; // await UserModel.find();
+  const users: IUser[] = (await UserModel.findAll()) as any;
   return users;
 };
 export const query = {
@@ -9,10 +9,9 @@ export const query = {
       return await usersInMongo();
     },
     getUser: async (root: any, args: any) => {
-      // return (await UserModel.findById(args["id"])) as IUser;
-      return {
-        name: "s",
-      };
+      const user = await UserModel.findByPk(args["id"]);
+      console.log(user);
+      return user;
     },
   },
 };
