@@ -10,7 +10,7 @@ export const mutation = {
 
         //encriptar contraseña
         const salt = bycript.genSaltSync();
-        userAux.password = bycript.hashSync(userAux.password, salt);
+        // userAux.password = bycript.hashSync(userAux.password, salt);
 
         // await doc.save();
         // return await doc;
@@ -25,11 +25,11 @@ export const mutation = {
       const { id } = args;
 
       try {
-        let { password, email, ...rest }: IUser = args;
-        if (password) {
-          const salt = bycript.genSaltSync();
-          (rest as any).password = bycript.hashSync(password, salt);
-        }
+        // let { password, email, ...rest }: IUser = args;
+        // if (password) {
+        //   const salt = bycript.genSaltSync();
+        //   (rest as any).password = bycript.hashSync(password, salt);
+        // }
         return await {
           id: "s",
         };
