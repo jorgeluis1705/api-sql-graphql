@@ -2,10 +2,8 @@ import express from "express";
 import { createServer } from "http";
 import cors from "cors";
 import compression from "compression";
-import { router as usersRoutes } from "../routes/users.routes";
 import { router as graphqlRoutes } from "../routes/graphql.routes";
 import { serverApollo } from "./../apollo-server/apollo-server.server";
-import { run } from "../db/connectionDb";
 
 export class ServerExpress {
   app: express.Express;
@@ -19,7 +17,6 @@ export class ServerExpress {
     this.middleware();
     this.routes();
     this.httpServer = createServer(this.app);
-    run();
   }
 
   middleware() {
@@ -31,7 +28,6 @@ export class ServerExpress {
     this.app.use(express.json());
   }
   routes() {
-    this.app.use(`${this.pathBase}/users`, usersRoutes);
     this.apolloServerInit();
     this.app.use(`/`, graphqlRoutes);
   }

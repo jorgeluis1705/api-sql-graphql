@@ -12,6 +12,6 @@ router.get(
 router.post(
   "/",
   expressPlayGround({
-    endpoint: "/graphql",
+    endpoint: "/graphql/apolloserver",
   })
 );
