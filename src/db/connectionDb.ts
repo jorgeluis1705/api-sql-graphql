@@ -1,5 +1,7 @@
+import console from "console";
 import { Sequelize } from "sequelize";
-require("dotenv").config({ path: "../.env" });
+import { config } from "dotenv";
+config({ path: "../.env" });
 export const sequelizeDB = new Sequelize(
   process.env.DB_NAME || "Prueba",
   process.env.DB_USER || "root",
