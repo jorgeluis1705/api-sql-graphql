@@ -24,7 +24,7 @@ class ServerExpress {
     constructor() {
         this.pathBase = "/api";
         this.app = (0, express_1.default)();
-        this.port = 3000;
+        this.port = Number(process.env.PORT) || 3000;
         this.dbSql();
         this.middleware();
         this.routes();

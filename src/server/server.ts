@@ -13,7 +13,7 @@ export class ServerExpress {
   pathBase: string = "/api";
   constructor() {
     this.app = express();
-    this.port = 3000;
+    this.port = Number(process.env.PORT) || 3000;
     /* middleares */
     this.dbSql();
     this.middleware();
