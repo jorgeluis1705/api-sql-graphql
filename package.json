@@ -9,6 +9,9 @@
     "start:dev": "npm run build:dev",
     "build:dev": "nodemon \"src/main.ts\" --exec \"ts-node\" src/main.ts -e ts,json,graphql"
   },
+  "engines": {
+    "node": "14.18.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
